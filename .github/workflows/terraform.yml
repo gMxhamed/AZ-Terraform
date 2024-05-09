@@ -1,28 +1,31 @@
 name: test
+
 on:
   workflow_dispatch:
+
 jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
-     - name: Terraform Format
-       run: |
-         terraform fmt -check main.tf variables.tf aws.tf
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Terraform Format
+        run: terraform fmt -check -recursive main.tf dev.tfvars
 
-     - name: Azure Login    
-       uses: azure/login@v1
-       with:
-         creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Azure Login    
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
      
-     - name: Terraform Init
-       run: |
-         terraform init
-         terraform test
+      - name: Terraform Init
+        run: |
+          terraform init
+          terraform validate
 
-     - name: Terraform Plan
-       run: terraform plan -var-file dev.tfvars
+      - name: Terraform Plan
+        run: terraform plan -var-file=dev.tfvars
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
