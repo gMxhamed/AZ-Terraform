@@ -1,7 +1,7 @@
 address_space       = "10.16.0.0/16"
 resource_group_name = "my-rg"
 besoin = "1"
-my_public_ip        = "ur-public-IP"
+my_public_ip        = "213.248.108.230"
 
 sub_number = {
     type= "list"
