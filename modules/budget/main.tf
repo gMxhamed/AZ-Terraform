@@ -46,6 +46,6 @@ resource "azurerm_consumption_budget_resource_group" "budget" {
     threshold      = 100.0
     operator       = "GreaterThanOrEqualTo"
     threshold_type = "Actual"
-    contact_emails = ["mohammed.guendouz@ynov.com"]
+    contact_emails = ["put.ur.mail.here@gmail.com"]
   }
 }
