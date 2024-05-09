@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v4
+     - name: Terraform Format
+       run: |
+         terraform fmt -check main.tf variables.tf aws.tf
 
      - name: Azure Login    
        uses: azure/login@v1
@@ -16,7 +19,6 @@ jobs:
      - name: Terraform Init
        run: |
          terraform init
-         terraform fmt -check main.tf
          terraform test
 
      - name: Terraform Plan
