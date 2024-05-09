@@ -13,10 +13,10 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Terraform Init
-      run: terraform init
-
-    - name: Terraform Format
-      run: terraform fmt -check
+      run: |
+        terraform init
+        terraform validate
+        terraform test
 
     - name: Terraform Plan
       run: terraform plan -var-file dev.tfvars
