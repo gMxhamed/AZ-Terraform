@@ -30,7 +30,7 @@ resource "azurerm_consumption_budget_resource_group" "budget" {
     operator       = "GreaterThanOrEqualTo"
     threshold_type = "Forecasted"
 
-    contact_emails = ["mohammed.guendouz@ynov.com"]
+    contact_emails = ["put.ur.mail.here@gmail.com"]
 
     contact_groups = [
       azurerm_monitor_action_group.rg-act.id,
