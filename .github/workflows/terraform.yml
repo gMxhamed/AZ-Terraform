@@ -31,7 +31,7 @@ jobs:
       - name: Terraform Init
         run: |
           terraform init
-          terraform test -var-file=dev.tfvars
+          terraform test 
 
       - name: Terraform Plan
         run: terraform plan -var-file=dev.tfvars
