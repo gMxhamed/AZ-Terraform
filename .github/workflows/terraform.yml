@@ -14,10 +14,19 @@ jobs:
       #- name: Terraform Format
       #  run: terraform fmt -check -recursive main.tf
 
-      - name: Azure Login    
+      - name: 'Az CLI login with subscription'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - run: |
+          az account show --output none
+          
+      - name: 'Az CLI login without subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          allow-no-subscriptions: true
      
       - name: Terraform Init
         run: |
